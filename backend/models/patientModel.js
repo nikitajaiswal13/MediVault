@@ -16,7 +16,7 @@ const patientSchema = new mongoose.Schema(
       type: Date
     },
 
-    // 🔗 link patient to logged-in user
+    // link patient to logged-in user
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
