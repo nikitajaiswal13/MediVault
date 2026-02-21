@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const authController = require("./controllers/authController")
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes')
@@ -8,6 +9,7 @@ const recordRoutes = require('./routes/recordRoutes')
 dotenv.config({path : './.env'})
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.get('/' , (req , res) => {
     res.send('MediVault Backend is running');
