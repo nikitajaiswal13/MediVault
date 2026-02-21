@@ -4,26 +4,67 @@
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
 
+    <!-- EMAIL -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" required>
+      <input
+        matInput
+        type="email"
+        formControlName="email">
+
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+        Enter a valid email address
+      </mat-error>
     </mat-form-field>
 
+
+    <!-- PASSWORD -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" required>
+      <input
+        matInput
+        type="password"
+        formControlName="password">
+
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+
+      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+        Minimum 6 characters required
+      </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="full-width login-btn">
-      Login
+
+    <!-- LOGIN BUTTON -->
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width login-btn"
+      type="submit"
+      [disabled]="isLoading">
+
+      <mat-progress-spinner
+        *ngIf="isLoading"
+        diameter="20"
+        mode="indeterminate">
+      </mat-progress-spinner>
+
+      <span *ngIf="!isLoading">Login</span>
+
     </button>
 
   </form>
 
-  <!-- <div class="signup-link">
+  <!-- SIGNUP LINK -->
+  <div class="signup-link">
     Don’t have an account?
     <a (click)="openSignup()">Sign Up</a>
-  </div> -->
+  </div>
 
 </mat-dialog-content>
 
