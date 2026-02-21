@@ -1,0 +1,22 @@
+.patients-container {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.add-card, .list-card {
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.patient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}

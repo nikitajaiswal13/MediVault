@@ -1,1 +1,47 @@
-<p>records works!</p>
+<div class="records-container">
+
+  <mat-card class="upload-card">
+    <mat-card-title>Upload Record</mat-card-title>
+
+    <form (ngSubmit)="uploadRecord()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Record Type</mat-label>
+        <input matInput [(ngModel)]="recordType" name="recordType" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Hospital</mat-label>
+        <input matInput [(ngModel)]="hospital" name="hospital">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" [(ngModel)]="date" name="date">
+      </mat-form-field>
+
+      <input type="file" (change)="onFileSelected($event)" required>
+
+      <button mat-raised-button color="primary">
+        Upload
+      </button>
+
+    </form>
+  </mat-card>
+
+  <mat-card class="list-card">
+    <mat-card-title>Records</mat-card-title>
+
+    <div *ngFor="let record of records" class="record-item">
+      <div>
+        <strong>{{ record.recordType }}</strong> - {{ record.hospital }}
+      </div>
+
+      <button mat-button color="warn" (click)="deleteRecord(record._id)">
+        Delete
+      </button>
+    </div>
+
+  </mat-card>
+
+</div>

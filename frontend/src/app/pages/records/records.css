@@ -1,0 +1,21 @@
+.records-container {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.upload-card, .list-card {
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
