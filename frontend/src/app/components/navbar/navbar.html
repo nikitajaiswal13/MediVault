@@ -1,14 +1,17 @@
 <mat-toolbar color="primary" class="navbar">
 
   <div class="logo-container">
-    <img src="assets/Logo/logo.png" alt="Logo" class="logo">
+    <a routerLink="/home">
+      <img src="assets/Logo/logo.png" alt="Logo" class="logo">
+    </a>
   </div>
 
   <span class="spacer"></span>
 
   <!-- Not Logged In -->
   <div *ngIf="!isLoggedIn">
-    <button mat-button>Contact</button>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/contact">Contact</button>
     <button mat-button (click)="openLogin()">Login</button>
     <button mat-button (click)="openSignup()">Sign Up</button>
   </div>

@@ -10,6 +10,9 @@ import { Records } from './pages/records/records';
 import { Navbar } from './components/navbar/navbar';
 import { Home } from './pages/home/home';
 import { Footer } from './components/footer/footer';
+import { Terms } from './pages/terms/terms';
+import { Privacy } from './pages/privacy/privacy';
+import {Contact} from './pages/contact/contact'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { AddRecordDialog } from './components/add-record-dialog/add-record-dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,10 @@ import { AddRecordDialog } from './components/add-record-dialog/add-record-dialo
     Footer,
     Patients,
     AddRecordDialog,
+    Terms,
+    Privacy,
+    Contact,
+    
   ],
   imports: [
     BrowserModule,
@@ -55,8 +63,9 @@ import { AddRecordDialog } from './components/add-record-dialog/add-record-dialo
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-        MatIconModule,
-        MatSelectModule,
+    MatIconModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

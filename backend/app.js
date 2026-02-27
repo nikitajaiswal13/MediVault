@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes')
 const patientRoutes = require('./routes/patientRoutes')
 const recordRoutes = require('./routes/recordRoutes')
+const contactRoutes = require('./routes/contactRoutes')
 
 dotenv.config({path : './.env'})
 const app = express();
@@ -18,6 +19,7 @@ app.get('/' , (req , res) => {
 app.use('/api/v1/users' , userRoutes)
 app.use('/api/v1/patients', patientRoutes);
 app.use('/api/v1/records', recordRoutes);
+app.use('/api/v1', contactRoutes);
 
 
 module.exports = app;

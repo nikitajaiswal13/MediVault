@@ -1,0 +1,92 @@
+/* ---------- WRAPPER ---------- */
+
+.policy-wrapper {
+  background: linear-gradient(to right, #f8fafc, #eef2ff);
+  padding: 50px 20px;
+}
+
+/* ---------- HEADER ---------- */
+
+.page-header {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+
+.header-content h1 {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.header-content p {
+  font-size: 16px;
+  color: #cbd5e1;
+}
+
+
+
+
+
+
+
+/* ---------- MAIN CONTAINER ---------- */
+
+.policy-container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 40px 45px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  line-height: 1.8;
+  color: #334155;
+}
+
+
+/* ---------- SECTIONS ---------- */
+
+.policy-section {
+  margin-top: 35px;
+}
+
+.policy-section h2 {
+  font-size: 20px;
+  color: #0f172a;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.policy-section ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.policy-section li {
+  margin-bottom: 8px;
+}
+
+
+/* ---------- META INFO ---------- */
+
+.last-updated {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+  .policy-container {
+    padding: 30px 22px;
+  }
+
+  .header-content h1 {
+    font-size: 28px;
+  }
+}

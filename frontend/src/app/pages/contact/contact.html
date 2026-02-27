@@ -1,0 +1,108 @@
+<section class="contact-hero">
+  <div class="hero-content">
+    <h1>Contact Us</h1>
+    <p>Have questions about mediVault? We’re here to help.</p>
+  </div>
+</section>
+
+<section class="contact-wrapper">
+
+  <div class="contact-container">
+
+    <!-- LEFT SIDE INFO -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+
+      <div class="info-item">
+        <mat-icon>email</mat-icon>
+        <span>nikkijaiswal535@gmail.com</span>
+      </div>
+
+      <div class="info-item">
+        <mat-icon>location_on</mat-icon>
+        <span>Pune, India</span>
+      </div>
+
+      <div class="info-item">
+        <mat-icon>schedule</mat-icon>
+        <span>Response within 24–48 hours</span>
+      </div>
+
+      <!-- ✅ Portfolio Link -->
+      <div class="info-item">
+        <mat-icon>language</mat-icon>
+        <a
+          href="https://nikitajaiswal13.netlify.app/home"
+          target="_blank"
+          class="portfolio-link">
+          View My Portfolio
+        </a>
+      </div>
+
+      <!-- Optional GitHub -->
+      <div class="info-item">
+        <mat-icon>code</mat-icon>
+        <a
+          href="https://github.com/NikitaJaiswal13"
+          target="_blank"
+          class="portfolio-link">
+          GitHub Profile
+        </a>
+      </div>
+
+      <p class="info-desc">
+        mediVault is built with a focus on secure healthcare data
+        management and modern SaaS architecture. Feel free to reach
+        out for collaboration, feedback, or opportunities.
+      </p>
+    </div>
+
+
+    <!-- RIGHT SIDE FORM -->
+    <form class="contact-form"
+          [formGroup]="contactForm"
+          (ngSubmit)="submit()">
+
+      <h2>Send Message</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="contactForm.get('name')?.touched &&
+                          contactForm.get('name')?.invalid">
+          Minimum 3 characters required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="contactForm.get('email')?.touched &&
+                          contactForm.get('email')?.invalid">
+          Enter valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea matInput rows="5" formControlName="message"></textarea>
+        <mat-error *ngIf="contactForm.get('message')?.touched &&
+                          contactForm.get('message')?.invalid">
+          Minimum 10 characters required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="contactForm.invalid || loading">
+
+        {{ loading ? 'Sending...' : 'Send Message' }}
+
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
