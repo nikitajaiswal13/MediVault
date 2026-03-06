@@ -10,7 +10,7 @@ exports.createRecord = async (req, res) => {
       recordType,
       hospital,
       date,
-      file: req.file.path,  
+      file: req.file.filename,  
       patient: req.params.patientId,
       user: req.user.id
     });

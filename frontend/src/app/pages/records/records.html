@@ -10,17 +10,13 @@
 
       <p>
         {{ isPatientView
-            ? 'Manage and upload records for this patient.'
-            : 'View medical records across all patients.' }}
+        ? 'Manage and upload records for this patient.'
+        : 'View medical records across all patients.' }}
       </p>
     </div>
 
     <!-- Upload allowed ONLY in patient view -->
-    <button
-      *ngIf="isPatientView"
-      mat-raised-button
-      color="primary"
-      (click)="openUploadDialog()">
+    <button *ngIf="isPatientView" mat-raised-button color="primary" (click)="openUploadDialog()">
       + Upload Record
     </button>
 
@@ -40,8 +36,8 @@
     <h3>No records found</h3>
     <p>
       {{ isPatientView
-          ? 'Upload the first medical document for this patient.'
-          : 'No records available yet.' }}
+      ? 'Upload the first medical document for this patient.'
+      : 'No records available yet.' }}
     </p>
   </div>
 
@@ -80,17 +76,11 @@
       <!-- ACTIONS -->
       <div class="record-card-actions">
 
-        <a
-          class="view-link"
-          [href]="'http://localhost:3000/' + record.file"
-          target="_blank">
+        <a class="view-link" [href]="'http://localhost:3000/uploads/' + record.file" target="_blank">
           View File
         </a>
 
-        <button
-          mat-icon-button
-          color="warn"
-          (click)="deleteRecord(record._id)">
+        <button mat-icon-button color="warn" (click)="deleteRecord(record._id)">
           <mat-icon>delete</mat-icon>
         </button>
 

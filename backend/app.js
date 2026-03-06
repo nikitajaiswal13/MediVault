@@ -20,6 +20,7 @@ app.use('/api/v1/users' , userRoutes)
 app.use('/api/v1/patients', patientRoutes);
 app.use('/api/v1/records', recordRoutes);
 app.use('/api/v1', contactRoutes);
+app.use('/uploads', express.static('uploads'));
 
 
 module.exports = app;
