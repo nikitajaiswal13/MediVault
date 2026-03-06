@@ -15,7 +15,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Date</mat-label>
+      <mat-label>Date (mm/dd/yyyy)</mat-label>
 
       <input matInput [matDatepicker]="picker" formControlName="date" [max]="maxDate">
 
@@ -26,7 +26,11 @@
     </mat-form-field>
 
     <div class="file-upload">
-      <input type="file" (change)="onFileSelect($event)">
+      <input type="file" (change)="onFileSelect($event)" required>
+
+      <p class="file-error" *ngIf="recordForm.get('file')?.touched && recordForm.get('file')?.invalid">
+        File is required
+      </p>
     </div>
 
   </form>

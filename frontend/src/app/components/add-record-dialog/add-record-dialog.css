@@ -21,3 +21,9 @@ mat-form-field {
 .file-upload {
   margin-top: 10px;
 }
+
+.file-error {
+  color: #f44336;
+  font-size: 13px;
+  margin-top: 5px;
+}

@@ -23,16 +23,16 @@ export class Records implements OnInit {
     private recordService: Record,
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   // ===============================
   // INIT
   // ===============================
   ngOnInit(): void {
 
-    
+
     this.route.paramMap.subscribe(params => {
-      
+
       const id = params.get('patientId');
       console.log("Patient ID:", id);
 
@@ -75,27 +75,27 @@ export class Records implements OnInit {
   // ===============================
   // LOAD ALL RECORDS
   // ===============================
-loadAllRecords(): void {
+  loadAllRecords(): void {
 
-  console.log("Loading ALL records...");
+    console.log("Loading ALL records...");
 
-  this.isLoading = true;
+    this.isLoading = true;
 
-  this.recordService.getAllRecords()
-    .subscribe({
-      next: (res: any) => {
-        console.log("ALL RECORDS RESPONSE:", res);
+    this.recordService.getAllRecords()
+      .subscribe({
+        next: (res: any) => {
+          console.log("ALL RECORDS RESPONSE:", res);
 
-        this.records = [...res.data];
-        this.isLoading = false;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.log("ALL RECORDS ERROR:", err);
-        this.isLoading = false;
-      }
-    });
-}
+          this.records = [...res.data];
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.log("ALL RECORDS ERROR:", err);
+          this.isLoading = false;
+        }
+      });
+  }
 
   // ===============================
   // UPLOAD
@@ -109,10 +109,16 @@ loadAllRecords(): void {
       data: { patientId: this.patientId }
     });
 
-    dialogRef.afterClosed().subscribe(newRecord => {
-      if (newRecord) {
-        this.records.unshift(newRecord);
+    dialogRef.afterClosed().subscribe(success => {
+
+      if (!success) return;
+
+      if (this.isPatientView) {
+        this.loadRecordsByPatient();
+      } else {
+        this.loadAllRecords();
       }
+
     });
   }
 

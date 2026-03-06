@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Record } from '../../services/record';
@@ -10,7 +10,8 @@ import { Record } from '../../services/record';
   styleUrl: './add-record-dialog.css',
 })
 export class AddRecordDialog {
-   recordForm: FormGroup;
+
+  recordForm: FormGroup;
   selectedFile!: File;
   isLoading = false;
   maxDate = new Date();
@@ -21,20 +22,42 @@ export class AddRecordDialog {
     private dialogRef: MatDialogRef<AddRecordDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { patientId: string }
   ) {
+
     this.recordForm = this.fb.group({
       recordType: ['', Validators.required],
       hospital: ['', Validators.required],
-      date: ['', Validators.required]
+      date: ['', Validators.required],
+      file: [null, Validators.required]
     });
+
   }
 
-  onFileSelect(event: any) {
-    this.selectedFile = event.target.files[0];
+  // ===============================
+  // FILE SELECT
+  // ===============================
+  onFileSelect(event: any): void {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    this.selectedFile = file;
+
+    // update form control
+    this.recordForm.patchValue({
+      file: file
+    });
+
+    this.recordForm.get('file')?.updateValueAndValidity();
+
   }
 
+  // ===============================
+  // SUBMIT
+  // ===============================
   submit(): void {
 
-    if (this.recordForm.invalid || !this.selectedFile) {
+    if (this.recordForm.invalid) {
       this.recordForm.markAllAsTouched();
       return;
     }
@@ -49,13 +72,19 @@ export class AddRecordDialog {
 
     this.recordService.createRecord(this.data.patientId, formData)
       .subscribe({
-        next: () => {
+        next: (res: any) => {
+
           this.isLoading = false;
-          this.dialogRef.close(true); // return success
+
+          // return newly created record
+          this.dialogRef.close(res.data);
+
         },
         error: () => {
           this.isLoading = false;
         }
       });
+
   }
+
 }
