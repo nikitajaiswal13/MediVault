@@ -1,11 +1,21 @@
 .record-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  width: 100%;
 }
 
 .full-width {
   width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* IMPORTANT FIX */
+.mat-mdc-form-field {
+  margin-top: 16px;
 }
 
 .file-upload {

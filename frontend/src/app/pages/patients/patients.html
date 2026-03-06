@@ -58,7 +58,13 @@
             <!-- DOB -->
             <mat-form-field appearance="outline">
                 <mat-label>Date of Birth</mat-label>
-                <input matInput type="date" formControlName="dateOfBirth">
+
+                <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" [max]="maxDate">
+
+                <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+
+                <mat-datepicker #dobPicker></mat-datepicker>
+
             </mat-form-field>
 
             <button mat-raised-button color="primary" type="submit">
@@ -90,25 +96,17 @@
                 <p>DOB: {{ patient.dateOfBirth | date }}</p>
             </div>
 
-<div class="card-actions">
+            <div class="card-actions">
 
-  <button
-    mat-raised-button
-    color="primary"
-    class="view-btn"
-    [routerLink]="['/records', patient._id]">
-    View Records
-  </button>
+                <button mat-raised-button color="primary" class="view-btn" [routerLink]="['/records', patient._id]">
+                    View Records
+                </button>
 
-  <button
-    mat-icon-button
-    color="warn"
-    class="delete-btn"
-    (click)="deletePatient(patient._id)">
-    <mat-icon>delete</mat-icon>
-  </button>
+                <button mat-icon-button color="warn" class="delete-btn" (click)="deletePatient(patient._id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
 
-</div>
+            </div>
 
         </mat-card>
 

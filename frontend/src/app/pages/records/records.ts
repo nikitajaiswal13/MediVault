@@ -102,7 +102,7 @@ loadAllRecords(): void {
   // ===============================
   openUploadDialog(): void {
 
-    if (!this.isPatientView) return; // 🚫 block upload in all-records view
+    if (!this.isPatientView) return; //block upload in all-records view
 
     const dialogRef = this.dialog.open(AddRecordDialog, {
       width: '500px',

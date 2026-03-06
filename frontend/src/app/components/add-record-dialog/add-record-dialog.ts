@@ -13,6 +13,7 @@ export class AddRecordDialog {
    recordForm: FormGroup;
   selectedFile!: File;
   isLoading = false;
+  maxDate = new Date();
 
   constructor(
     private fb: FormBuilder,

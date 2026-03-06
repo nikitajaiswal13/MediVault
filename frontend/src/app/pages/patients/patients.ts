@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class Patients implements OnInit {
 
+  maxDate = new Date();
   patients: any[] = [];
   searchText: string = '';
   isLoading: boolean = false;

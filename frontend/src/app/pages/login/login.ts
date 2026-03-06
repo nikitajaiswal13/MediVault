@@ -49,7 +49,7 @@ export class Login {
 
           this.isLoading = false;     // stop spinner
           this.dialog.closeAll();     // close popup
-          this.router.navigate(['/patients']);
+          this.router.navigate(['/home']);
         },
         error: () => {
           this.snackBar.open('Invalid email or password', 'Close', {
