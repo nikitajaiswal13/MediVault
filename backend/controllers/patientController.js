@@ -1,7 +1,6 @@
 const Patient = require('../models/patientModel');
 
 
-// 1️⃣ Create Patient
 exports.createPatient = async (req, res) => {
   try {
     const { name, relation, dateOfBirth } = req.body;
@@ -27,7 +26,6 @@ exports.createPatient = async (req, res) => {
 };
 
 
-// 2️⃣ Get All Patients of Logged-in User
 exports.getAllPatients = async (req, res) => {
   try {
     const patients = await Patient.find({ user: req.user.id });
@@ -47,7 +45,6 @@ exports.getAllPatients = async (req, res) => {
 };
 
 
-// 3️⃣ Get Single Patient (Ownership check)
 exports.getPatientById = async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -76,7 +73,6 @@ exports.getPatientById = async (req, res) => {
 };
 
 
-// 4️⃣ Delete Patient (Ownership check)
 exports.deletePatient = async (req, res) => {
   try {
     const patient = await Patient.findOneAndDelete({

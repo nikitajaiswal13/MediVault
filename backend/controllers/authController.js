@@ -31,12 +31,16 @@ module.exports.signup = async (req, res, next) => {
       });
     }
 
+    // New User
+
     const newUser = await User.create({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
     });
+
+    // Password not sent in response for security reasons
 
     newUser.password = undefined;
 
@@ -102,11 +106,12 @@ module.exports.login = async (req, res, next) => {
   }
 };
 
+
 module.exports.protect = async (req, res, next) => {
   try {
     let token;
 
-    // 1️⃣ Get token from header
+    //  Get token from header
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith("Bearer")
@@ -114,7 +119,7 @@ module.exports.protect = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
     }
 
-    // 2️⃣ If no token → block access
+    //  If no token = block access
     if (!token) {
       return res.status(401).json({
         status: "failed",
@@ -122,10 +127,10 @@ module.exports.protect = async (req, res, next) => {
       });
     }
 
-    // 3️⃣ Verify token
+    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET_CODE);
 
-    // 4️⃣ Check if user still exists
+    //  Check if user still exists
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return res.status(401).json({
@@ -134,10 +139,10 @@ module.exports.protect = async (req, res, next) => {
       });
     }
 
-    // 5️⃣ Attach user to request
+    //  Attach user to request
     req.user = currentUser;
 
-    // 6️⃣ Allow request to continue
+    //  Allow request to continue
     next();
 
   } catch (err) {

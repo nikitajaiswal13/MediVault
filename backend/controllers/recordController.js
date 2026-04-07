@@ -1,7 +1,6 @@
 const Record = require('../models/recordModel');
 
 
-// 1️ Add record to a patient
 exports.createRecord = async (req, res) => {
   try {
     const { recordType, hospital, date } = req.body;
@@ -30,7 +29,6 @@ exports.createRecord = async (req, res) => {
 
 
 
-// 2️ Get all records of a patient
 exports.getRecordsByPatient = async (req, res) => {
   try {
     const records = await Record.find({
@@ -53,7 +51,6 @@ exports.getRecordsByPatient = async (req, res) => {
 };
 
 
-// 3️ Delete record
 exports.deleteRecord = async (req, res) => {
   try {
     const record = await Record.findOneAndDelete({
