@@ -65,7 +65,7 @@ export class Signup {
 
           this.isLoading = false;
           this.dialog.closeAll();
-          this.router.navigate(['/patients']);
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.snackBar.open('Signup failed. Try again.', 'Close', {
