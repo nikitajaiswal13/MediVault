@@ -43,9 +43,4 @@ export class Record {
   });
 }
 
-//   getPatientById(id: string) {
-//   return this.http.get(`http://localhost:3000/api/v1/patients/${id}`, {
-//     headers: this.getHeaders()
-//   });
-// }
 }

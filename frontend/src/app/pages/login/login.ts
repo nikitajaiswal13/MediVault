@@ -29,7 +29,7 @@ export class Login {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -47,9 +47,9 @@ export class Login {
         next: (res: any) => {
           localStorage.setItem('token', res.token);
 
-          this.isLoading = false;     // stop spinner
-          this.dialog.closeAll();     // close popup
-          this.router.navigate(['/dashboard']);  // navigate to dashboard
+          this.isLoading = false;     
+          this.dialog.closeAll();     
+          this.router.navigate(['/dashboard']);
         },
         error: () => {
           this.snackBar.open('Invalid email or password', 'Close', {

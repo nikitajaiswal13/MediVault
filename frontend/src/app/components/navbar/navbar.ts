@@ -50,7 +50,6 @@ export class Navbar {
   dialogRef.afterClosed().subscribe(result => {
 
     if (result) {
-      // ✅ ACTUAL LOGOUT
       localStorage.removeItem('token');
 
       this.router.navigate(['/home']);

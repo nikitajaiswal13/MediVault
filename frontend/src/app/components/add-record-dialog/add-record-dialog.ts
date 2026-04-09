@@ -32,14 +32,19 @@ export class AddRecordDialog {
 
   }
 
-  // ===============================
-  // FILE SELECT
-  // ===============================
+
   onFileSelect(event: any): void {
 
     const file = event.target.files[0];
 
     if (!file) return;
+
+    const maxSize = 5 * 1024 * 1024;
+
+    if (file.size > maxSize) {
+      alert('File size should not exceed 5MB');
+      return;
+    }
 
     this.selectedFile = file;
 
@@ -52,9 +57,7 @@ export class AddRecordDialog {
 
   }
 
-  // ===============================
-  // SUBMIT
-  // ===============================
+
   submit(): void {
 
     if (this.recordForm.invalid) {
@@ -76,7 +79,6 @@ export class AddRecordDialog {
 
           this.isLoading = false;
 
-          // return newly created record
           this.dialogRef.close(res.data);
 
         },
