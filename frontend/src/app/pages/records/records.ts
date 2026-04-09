@@ -27,9 +27,7 @@ export class Records implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
-  // ===============================
-  // INIT
-  // ===============================
+
   ngOnInit(): void {
 
 
@@ -39,12 +37,10 @@ export class Records implements OnInit {
       console.log("Patient ID:", id);
 
       if (id) {
-        // Patient-specific records
         this.patientId = id;
         this.isPatientView = true;
         this.loadRecordsByPatient();
       } else {
-        // All records page
         this.isPatientView = false;
         this.loadAllRecords();
       }
@@ -53,9 +49,7 @@ export class Records implements OnInit {
 
   }
 
-  // ===============================
-  // LOAD PATIENT RECORDS
-  // ===============================
+
   loadRecordsByPatient(): void {
 
     this.isLoading = true;
@@ -74,9 +68,7 @@ export class Records implements OnInit {
 
   }
 
-  // ===============================
-  // LOAD ALL RECORDS
-  // ===============================
+
   loadAllRecords(): void {
 
     console.log("Loading ALL records...");
@@ -99,9 +91,7 @@ export class Records implements OnInit {
       });
   }
 
-  // ===============================
-  // UPLOAD
-  // ===============================
+
   openUploadDialog(): void {
 
     if (!this.isPatientView) return; //block upload in all-records view
@@ -123,16 +113,6 @@ export class Records implements OnInit {
 
     });
   }
-
-  // ===============================
-  // DELETE
-  // ===============================
-  // deleteRecord(id: string): void {
-  //   this.recordService.deleteRecord(id)
-  //     .subscribe(() => {
-  //       this.records = this.records.filter(r => r._id !== id);
-  //     });
-  // }
 
 
 deleteRecord(id: string): void {

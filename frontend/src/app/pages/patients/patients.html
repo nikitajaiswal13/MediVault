@@ -1,6 +1,5 @@
 <section class="patients-page">
 
-    <!-- ===== BANNER ===== -->
     <div class="patients-banner">
         <div class="banner-content">
             <h1>Patient Management</h1>
@@ -9,7 +8,7 @@
 
         <img src="assets/img/medical-illustration.png" alt="Medical Illustration" class="banner-image" />
     </div>
-    <!-- ===== HEADER ===== -->
+
     <div class="patients-header">
         <div>
             <h2>Patients</h2>
@@ -28,17 +27,14 @@
         </div>
     </div>
 
-    <!-- ===== ADD FORM ===== -->
     <div class="add-form-container" *ngIf="showAddForm">
         <form [formGroup]="patientForm" (ngSubmit)="addPatient()" class="add-form">
 
-            <!-- NAME -->
             <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name">
             </mat-form-field>
 
-            <!-- RELATION DROPDOWN -->
             <mat-form-field appearance="outline">
                 <mat-label>Relation</mat-label>
                 <mat-select formControlName="relation">
@@ -55,7 +51,6 @@
                 </mat-select>
             </mat-form-field>
 
-            <!-- DOB -->
             <mat-form-field appearance="outline">
                 <mat-label>DOB (mm/dd/yyyy)</mat-label>
 
@@ -74,7 +69,6 @@
         </form>
     </div>
 
-    <!-- ===== PATIENT GRID ===== -->
     <div class="patients-grid" *ngIf="filteredPatients().length > 0; else emptyState">
 
         <mat-card class="patient-card" *ngFor="let patient of filteredPatients()">
@@ -112,7 +106,6 @@
 
     </div>
 
-    <!-- ===== EMPTY STATE ===== -->
     <ng-template #emptyState>
         <div class="empty-state">
             <h3>No patients added yet</h3>

@@ -52,9 +52,9 @@ export class Patients implements OnInit {
 
   loadPatients(): void {
   this.patientService.getPatients().subscribe((res: any) => {
-    this.patients = [...res.data]; // force new reference
+    this.patients = [...res.data];
     this.isLoading = false;
-    this.cdr.detectChanges(); // trigger change detection
+    this.cdr.detectChanges(); 
   });
 }
 
@@ -71,7 +71,6 @@ export class Patients implements OnInit {
   this.patientService.createPatient(this.patientForm.value)
     .subscribe((res: any) => {
 
-      // Add new patient to list immediately
       this.patients.unshift(res.data);
 
       this.patientForm.reset();
@@ -79,12 +78,6 @@ export class Patients implements OnInit {
     });
 }
 
-  // deletePatient(id: string): void {
-  //   this.patientService.deletePatient(id)
-  //     .subscribe(() => {
-  //       this.loadPatients();
-  //     });
-  // }
 
   deletePatient(id: string): void {
 

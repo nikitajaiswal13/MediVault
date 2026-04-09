@@ -24,9 +24,6 @@ export class Dashboard implements OnInit {
     private cdr: ChangeDetectorRef 
   ) {}
 
-  // ngOnInit(): void {
-  //   this.refreshDashboard();
-  // }
 
   ngOnInit(): void {
   this.refreshDashboard();
@@ -36,23 +33,18 @@ export class Dashboard implements OnInit {
   });
 }
 
-  // ===============================
-  // MASTER REFRESH
-  // ===============================
+
   refreshDashboard() {
     this.loadPatients();
     this.loadRecords();
   }
 
-  // ===============================
-  // LOAD PATIENTS
-  // ===============================
+
   loadPatients() {
     this.patientService.getPatients().subscribe((res: any) => {
 
       const data = res.data?.data || res.data || [];
 
-      // IMPORTANT: new reference
       this.patients = [...data];
 
       this.totalPatients = this.patients.length;
@@ -63,15 +55,12 @@ export class Dashboard implements OnInit {
     });
   }
 
-  // ===============================
-  // LOAD RECORDS
-  // ===============================
+ 
   loadRecords() {
     this.recordService.getAllRecords().subscribe((res: any) => {
 
       const data = res.data?.data || res.data || [];
 
-      // IMPORTANT: new reference
       this.records = [...data];
 
       this.totalRecords = this.records.length;
