@@ -10,7 +10,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ConfirmDialog {
     // message = 'Are you sure?';
 
-    // constructor(public dialogRef: MatDialogRef<ConfirmDialog>) { }
     constructor(public dialogRef: MatDialogRef<ConfirmDialog> , 
         @Inject(MAT_DIALOG_DATA) public data: any 
     ) { }

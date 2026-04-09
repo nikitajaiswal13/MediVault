@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// Auth Guard
 import { authGuard } from './guards/auth-guard';
-
+// Components
 import { Login } from './pages/login/login';
 import { Signup } from './pages/signup/signup';
 import { Patients } from './pages/patients/patients';

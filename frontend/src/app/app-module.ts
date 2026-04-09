@@ -1,6 +1,7 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Angular Router
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Login } from './pages/login/login';
@@ -14,9 +15,12 @@ import { Terms } from './pages/terms/terms';
 import { Privacy } from './pages/privacy/privacy';
 import {Contact} from './pages/contact/contact'
 
+// Angular Forms and HTTP Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
+// Angular Material Modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,7 +33,6 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { AddRecordDialog } from './components/add-record-dialog/add-record-dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Dashboard } from './pages/dashboard/dashboard';
