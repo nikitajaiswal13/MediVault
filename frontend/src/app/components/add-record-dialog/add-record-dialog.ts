@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Record } from '../../services/record';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-record-dialog',
@@ -10,7 +11,6 @@ import { Record } from '../../services/record';
   styleUrl: './add-record-dialog.css',
 })
 export class AddRecordDialog {
-
   recordForm: FormGroup;
   selectedFile!: File;
   isLoading = false;
@@ -19,22 +19,19 @@ export class AddRecordDialog {
   constructor(
     private fb: FormBuilder,
     private recordService: Record,
+    private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<AddRecordDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: { patientId: string }
+    @Inject(MAT_DIALOG_DATA) public data: { patientId: string },
   ) {
-
     this.recordForm = this.fb.group({
       recordType: ['', Validators.required],
       hospital: ['', Validators.required],
       date: ['', Validators.required],
-      file: [null, Validators.required]
+      file: [null, Validators.required],
     });
-
   }
 
-
   onFileSelect(event: any): void {
-
     const file = event.target.files[0];
 
     if (!file) return;
@@ -42,7 +39,10 @@ export class AddRecordDialog {
     const maxSize = 5 * 1024 * 1024;
 
     if (file.size > maxSize) {
-      alert('File size should not exceed 5MB');
+      this.snackBar.open('File size should not exceed 5MB', 'Close', {
+        duration: 3000,
+        panelClass: ['error-snackbar'],
+      });
       return;
     }
 
@@ -50,16 +50,13 @@ export class AddRecordDialog {
 
     // update form control
     this.recordForm.patchValue({
-      file: file
+      file: file,
     });
 
     this.recordForm.get('file')?.updateValueAndValidity();
-
   }
 
-
   submit(): void {
-
     if (this.recordForm.invalid) {
       this.recordForm.markAllAsTouched();
       return;
@@ -73,20 +70,28 @@ export class AddRecordDialog {
     formData.append('date', this.recordForm.value.date);
     formData.append('file', this.selectedFile);
 
-    this.recordService.createRecord(this.data.patientId, formData)
-      .subscribe({
-        next: (res: any) => {
+    this.recordService.createRecord(this.data.patientId, formData).subscribe({
+      next: (res: any) => {
+        this.isLoading = false;
 
-          this.isLoading = false;
+        this.snackBar.open('Record uploaded successfully', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar'],
+        });
 
-          this.dialogRef.close(res.data);
+        this.dialogRef.close(res.data);
+      },
 
-        },
-        error: () => {
-          this.isLoading = false;
-        }
-      });
+      error: (err) => {
+        this.isLoading = false;
 
+        const message = err?.error?.message || 'Upload failed';
+
+        this.snackBar.open(message, 'Close', {
+          duration: 3000,
+          panelClass: ['error-snackbar'],
+        });
+      },
+    });
   }
-
 }

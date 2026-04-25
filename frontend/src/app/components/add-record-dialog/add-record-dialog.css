@@ -27,3 +27,13 @@ mat-form-field {
   font-size: 13px;
   margin-top: 5px;
 }
+
+.error-snackbar {
+  background-color: #e53935;
+  color: #fff;
+}
+
+.success-snackbar {
+  background-color: #43a047;
+  color: #fff;
+}

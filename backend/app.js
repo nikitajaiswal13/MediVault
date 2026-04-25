@@ -33,10 +33,28 @@ app.use((req, res) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-    console.error("GLOBAL ERROR:", err);
+  console.error(err);
+
+  // Multer errors (file size, etc.)
+  if (err.name === "MulterError") {
+    return res.status(400).json({
+      status: "fail",
+      message: err.message
+    });
+  }
+
+  // Custom file type error
+  if (err.message === "Only PDF and image files are allowed") {
+    return res.status(400).json({
+      status: "fail",
+      message: err.message
+    });
+  }
+
+  // Default error
   res.status(err.status || 500).json({
-    message: err.message || "Internal server error",
+    status: "error",
+    message: err.message || "Internal server error"
   });
 });
-
 module.exports = app;

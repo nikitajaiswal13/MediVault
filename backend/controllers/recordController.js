@@ -90,6 +90,7 @@ exports.getRecordsByPatient = async (req, res) => {
 
 exports.deleteRecord = async (req, res) => {
   try {
+  
     const record = await Record.findOne({
       _id: req.params.id,
       user: req.user.id
@@ -102,22 +103,31 @@ exports.deleteRecord = async (req, res) => {
       });
     }
 
-    // 🔥 Step 1: delete file from Cloudinary
-    await cloudinary.uploader.destroy(record.filePublicId, {
-      resource_type: "raw" // important for non-image files
-    });
+    try {
+      await cloudinary.uploader.destroy(record.filePublicId, {
+        resource_type: "raw"
+      });
+    } catch (cloudErr) {
+      console.error("Cloudinary delete failed:", cloudErr);
 
-    // 🔥 Step 2: delete from DB
+      return res.status(500).json({
+        status: 'fail',
+        message: 'Failed to delete file from storage'
+      });
+    }
+
+
     await Record.findByIdAndDelete(record._id);
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
-      message: 'Record and file deleted'
+      message: 'Record and file deleted successfully'
     });
 
   } catch (err) {
-    console.error(err);
-    res.status(400).json({
+    console.error("Delete error:", err);
+
+    return res.status(400).json({
       status: 'fail',
       message: err.message
     });
