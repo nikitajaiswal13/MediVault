@@ -14,6 +14,10 @@ const recordSchema = new mongoose.Schema(
     date: {
       type: Date
     },
+    filePublicId: {
+  type: String,
+  required: true
+},
 
     file: {                 
       type: String,

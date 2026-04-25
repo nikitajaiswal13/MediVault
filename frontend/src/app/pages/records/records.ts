@@ -34,7 +34,7 @@ export class Records implements OnInit {
     this.route.paramMap.subscribe(params => {
 
       const id = params.get('patientId');
-      console.log("Patient ID:", id);
+      // console.log("Patient ID:", id);
 
       if (id) {
         this.patientId = id;

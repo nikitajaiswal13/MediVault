@@ -23,13 +23,24 @@ export class Record {
     });
   }
 
-  createRecord(patientId: string, formData: FormData) {
-    return this.http.post(
-      `${this.baseUrl}/patients/${patientId}`,
-      formData,
-      { headers: this.getHeaders() }
-    );
-  }
+  // createRecord(patientId: string, formData: FormData) {
+  //   return this.http.post(
+  //     `${this.baseUrl}/patients/${patientId}`,
+  //     formData,
+  //     // { headers: this.getHeaders() }
+  //   );
+  // }
+
+  
+createRecord(patientId: string, formData: FormData) {
+  return this.http.post(
+    `${this.baseUrl}/patients/${patientId}`,
+    formData,
+    {
+      headers: this.getHeaders()
+    }
+  );
+}
 
   deleteRecord(id: string) {
     return this.http.delete(`${this.baseUrl}/${id}`, {

@@ -22,6 +22,8 @@ app.use("/api/v1/records", recordRoutes);
 app.use("/api/v1", contactRoutes);
 app.use("/uploads", express.static("uploads"));
 
+
+
 // 404 Handler
 app.use((req, res) => {
   res.status(404).json({
@@ -31,6 +33,7 @@ app.use((req, res) => {
 
 // Global Error Handler
 app.use((err, req, res, next) => {
+    console.error("GLOBAL ERROR:", err);
   res.status(err.status || 500).json({
     message: err.message || "Internal server error",
   });
