@@ -18,7 +18,7 @@ export class Login {
   isLoading = false;
   hidePassword = true;
 
-  private baseUrl = 'http://localhost:3000/api/v1/users';
+  private baseUrl = 'https://medivault-dhav.onrender.com/api/v1/users';
 
   constructor(
     private fb: FormBuilder,

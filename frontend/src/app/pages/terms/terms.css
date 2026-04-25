@@ -20,7 +20,6 @@
 }
 
 
-/* ---------- WRAPPER ---------- */
 
 .policy-wrapper {
   background: linear-gradient(to right, #f8fafc, #eef2ff);
@@ -28,7 +27,6 @@
 }
 
 
-/* ---------- MAIN CONTAINER ---------- */
 
 .policy-container {
   max-width: 800px;
@@ -42,7 +40,6 @@
 }
 
 
-/* ---------- SECTIONS ---------- */
 
 .policy-section {
   margin-top: 35px;
@@ -66,7 +63,6 @@
 }
 
 
-/* ---------- META INFO ---------- */
 
 .last-updated {
   font-size: 14px;
@@ -75,7 +71,6 @@
 }
 
 
-/* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 768px) {
   .policy-container {

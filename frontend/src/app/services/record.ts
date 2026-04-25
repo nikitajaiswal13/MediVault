@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class Record {
   
-  private baseUrl = 'http://localhost:3000/api/v1/records';
+  private baseUrl = 'https://medivault-dhav.onrender.com/api/v1/records';
 
   constructor(private http: HttpClient) {}
 

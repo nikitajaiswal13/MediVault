@@ -35,7 +35,7 @@ export class Contact {
     this.loading = true;
 
     this.http.post(
-      'http://localhost:3000/api/v1/contact',
+      'https://medivault-dhav.onrender.com/api/v1/contact',
       this.contactForm.value
     ).subscribe({
       next: () => {

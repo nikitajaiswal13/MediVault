@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class Patient {
   
-  private baseUrl = 'http://localhost:3000/api/v1/patients';
+  private baseUrl = 'https://medivault-dhav.onrender.com/api/v1/patients';
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +30,7 @@ export class Patient {
   }
 
     getPatientById(id: string) {
-  return this.http.get(`http://localhost:3000/api/v1/patients/${id}`, {
+  return this.http.get(`https://medivault-dhav.onrender.com/api/v1/patients/${id}`, {
     headers: this.getHeaders()
   });
 }
