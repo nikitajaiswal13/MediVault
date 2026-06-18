@@ -11,7 +11,7 @@ dotenv.config({ path: "./.env" });
 const app = express();
 
 app.use(cors({
-  origin: "https://medivaultapp.netlify.app", 
+  origin: ["https://medivaultapp.netlify.app" , "http://localhost:4200"], 
   credentials: true,
 }));
 app.use(express.json());

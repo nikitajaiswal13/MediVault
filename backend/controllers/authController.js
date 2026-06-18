@@ -54,10 +54,9 @@ module.exports.signup = async (req, res, next) => {
       },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: "failed",
-      message: err.message,
-      stack: err.stack,
+      message: "Internal Server Error. Please try again later.",
     });
   }
 };
@@ -98,10 +97,9 @@ module.exports.login = async (req, res, next) => {
         message: "Logged in successfully",
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: "failed",
-      message: err.message,
-      stack: err.stack,
+      message: "Internal Server Error. Please try again later.",
     });
   }
 };
