@@ -2,18 +2,18 @@ const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_API_KEY);
 const validator = require('validator');
 
-const safeName = validator.escape(name || '');
-const safeEmail = validator.normalizeEmail(email || '');
-const safeMessage = validator.escape(message || '');
 
 exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
+  const safeName = validator.escape(name || '');
+  const safeEmail = validator.normalizeEmail(email || '');
+  const safeMessage = validator.escape(message || '');
 
   try {
 
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: process.env.EMAIL, // your email
+      to: process.env.EMAIL, 
       subject: `Contact Form from ${safeName}`,
       html: `
         <p><strong>Name:</strong> ${safeName}</p>
