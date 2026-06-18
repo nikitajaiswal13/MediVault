@@ -1,5 +1,10 @@
 const { Resend } = require('resend');
 const resend = new Resend(process.env.RESEND_API_KEY);
+const validator = require('validator');
+
+const safeName = validator.escape(name || '');
+const safeEmail = validator.normalizeEmail(email || '');
+const safeMessage = validator.escape(message || '');
 
 exports.sendContactEmail = async (req, res) => {
   const { name, email, message } = req.body;
@@ -9,11 +14,11 @@ exports.sendContactEmail = async (req, res) => {
     await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: process.env.EMAIL, // your email
-      subject: `Contact Form from ${name}`,
+      subject: `Contact Form from ${safeName}`,
       html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Message:</strong> ${safeMessage}</p>
       `
     });
 
@@ -21,6 +26,13 @@ exports.sendContactEmail = async (req, res) => {
       success: true,
       message: "Email sent"
     });
+
+    if(!safeName || !safeEmail || !safeMessage) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required"
+      });
+    }
 
   } catch (err) {
     console.error(err);
