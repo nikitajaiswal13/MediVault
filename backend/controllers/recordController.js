@@ -1,36 +1,6 @@
 const Record = require('../models/recordModel');
 const cloudinary = require('../config/cloudinary');
 
-
-//   try {
-//     const { recordType, hospital, date } = req.body;
-
-//     const newRecord = await Record.create({
-//       recordType,
-//       hospital,
-//       date,
-//       file: req.file.path,  
-//       patient: req.params.patientId,
-//       user: req.user.id
-//     });
-
-//     // To check Clodinary upload response
-//     console.log(req.file);
-
-//     res.status(201).json({
-//       status: 'success',
-//       data: newRecord
-//     });
-
-//   } catch (err) {
-//     res.status(400).json({
-//       status: 'fail',
-//       message: err.message
-//     });
-//   }
-// };
-
-
 exports.createRecord = async (req, res) => {
   try {
     const { recordType, hospital, date } = req.body;

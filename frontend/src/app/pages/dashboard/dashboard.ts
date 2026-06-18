@@ -50,7 +50,6 @@ export class Dashboard implements OnInit {
       this.totalPatients = this.patients.length;
       this.cdr.detectChanges();
 
-      console.log("Patients:", this.patients);
 
     });
   }
@@ -68,13 +67,12 @@ export class Dashboard implements OnInit {
       const now = new Date();
 
       this.recentUploads = this.records.filter((r: any) => {
-        const recordDate = new Date(r.date);
+        const recordDate = new Date(r.CreatedAt);
         return (now.getTime() - recordDate.getTime()) < 7 * 24 * 60 * 60 * 1000;
       }).length;
 
       this.cdr.detectChanges();
 
-      console.log("Records:", this.records);
 
     });
   }

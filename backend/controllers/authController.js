@@ -67,8 +67,8 @@ module.exports.login = async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({
-        status: "Failed",
+      return res.status(400).json({
+        status: "failed",
         message: "Please Provide Email or Password",
       });
     }

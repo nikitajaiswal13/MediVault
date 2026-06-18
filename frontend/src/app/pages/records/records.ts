@@ -70,21 +70,18 @@ export class Records implements OnInit {
 
   loadAllRecords(): void {
 
-    console.log("Loading ALL records...");
 
     this.isLoading = true;
 
     this.recordService.getAllRecords()
       .subscribe({
         next: (res: any) => {
-          console.log("ALL RECORDS RESPONSE:", res);
 
           this.records = [...res.data];
           this.isLoading = false;
           this.cdr.detectChanges();
         },
         error: (err) => {
-          console.log("ALL RECORDS ERROR:", err);
           this.isLoading = false;
         }
       });
