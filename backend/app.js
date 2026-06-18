@@ -10,7 +10,10 @@ const contactRoutes = require("./routes/contactRoutes");
 dotenv.config({ path: "./.env" });
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://medivaultapp.netlify.app", 
+  credentials: true,
+}));
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("MediVault Backend is running");

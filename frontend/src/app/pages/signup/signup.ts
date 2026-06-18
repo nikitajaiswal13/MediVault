@@ -40,10 +40,31 @@ export class Signup {
   }
 
   passwordMatchValidator(form: FormGroup) {
-    const password = form.get('password')?.value;
-    const confirm = form.get('passwordConfirm')?.value;
-    return password === confirm ? null : { passwordMismatch: true };
+
+    const password = form.get('password');
+    const confirmPassword = form.get('passwordConfirm');
+
+    if (!password || !confirmPassword) {
+      return null;
+    }
+
+    if (password.value !== confirmPassword.value) {
+
+      confirmPassword.setErrors({ passwordMismatch: true });
+
+    } else {
+
+      if (confirmPassword.hasError('passwordMismatch')) {
+
+        confirmPassword.setErrors(null);
+
+      }
+    }
+
+    return null;
   }
+
+
 
   onSubmit() {
 
@@ -57,22 +78,43 @@ export class Signup {
     this.http.post(`${this.baseUrl}/signup`, this.signupForm.value)
       .subscribe({
         next: (res: any) => {
+
+          this.isLoading = false;
+
           localStorage.setItem('token', res.token);
 
-          this.snackBar.open('Account created successfully!', 'Close', {
-            duration: 3000
-          });
+          this.snackBar.open(
+            'Account created successfully!',
+            'Close',
+            {
+              duration: 3000
+            }
+          );
 
-          this.isLoading = false;
           this.dialog.closeAll();
+
           this.router.navigate(['/dashboard']);
         },
-        error: () => {
-          this.snackBar.open('Signup failed. Try again.', 'Close', {
+        error: (err) => {
+
+          console.log(err);
+
+          this.isLoading = false;
+
+          let errorMessage = 'Signup failed. Try again.';
+
+          if (err.status === 409) {
+            errorMessage = 'Email already exists';
+          }
+
+          else if (err.error?.message) {
+            errorMessage = err.error.message;
+          }
+
+          this.snackBar.open(errorMessage, 'Close', {
             duration: 3000
           });
 
-          this.isLoading = false;
         }
       });
   }
