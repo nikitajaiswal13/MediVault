@@ -15,7 +15,7 @@ module.exports.signup = async (req, res, next) => {
 
     if (!name || !password || !email) {
       return res.status(400).json({
-        status: "falied",
+        status: "failed",
         message: "Please Provide Username || Password || email",
       });
     }
@@ -26,7 +26,7 @@ module.exports.signup = async (req, res, next) => {
 
     if (existUser) {
       return res.status(409).json({
-        status: "Falied",
+        status: "failed",
         message: "User already exists",
       });
     }
@@ -47,7 +47,7 @@ module.exports.signup = async (req, res, next) => {
     const token = signToken(newUser._id);
 
     res.status(201).json({
-      status: "Success",
+      status: "success",
       token,
       message: {
         User: newUser,
