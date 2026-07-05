@@ -1,9 +1,13 @@
 <mat-toolbar class="navbar">
 
   <div class="logo-container">
-    <a routerLink="/home">
+    <!-- <a routerLink="/home">
       <img src="assets/Logo/logo.png" alt="Logo" class="logo">
-    </a>
+    </a> -->
+
+    <a [routerLink]="isLoggedIn ? '/dashboard' : '/home'">
+  <img src="assets/Logo/logo.png" alt="Logo" class="logo">
+</a>
   </div>
 
   <span class="spacer"></span>

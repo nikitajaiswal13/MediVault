@@ -111,9 +111,23 @@ export class Signup {
             errorMessage = err.error.message;
           }
 
-          this.snackBar.open(errorMessage, 'Close', {
-            duration: 3000
-          });
+          // this.snackBar.open(errorMessage, 'Close', {
+          //   duration: 3000
+          // });
+
+          const snackBarRef = this.snackBar.open(errorMessage, 'Close', {
+  duration: 3000
+});
+
+snackBarRef.onAction().subscribe(() => {
+  this.signupForm.reset();
+
+  this.hidePassword = true;
+  this.hideConfirmPassword = true;
+
+  this.signupForm.markAsPristine();
+  this.signupForm.markAsUntouched();
+});
 
         }
       });
