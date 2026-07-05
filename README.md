@@ -38,7 +38,7 @@ It focuses on security, accessibility, and ease of use, making healthcare record
 
 ## 🔥 Live Demo  
 
-🌐 Link will be available soon
+🌐 [Live](https://medivaultapp.netlify.app/home)
 
 ---
 
